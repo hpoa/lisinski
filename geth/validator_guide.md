@@ -69,7 +69,7 @@ Store your account unlocking password into a new file (we name it `p` in this gu
 Finally, to start the `geth` use following commmand in which you replace the `<your-sealing-address>` with the public address of the private key from `pk.txt`- again from the first step, and you can also replace `<your-node-name>` with arbitrary node name (for identifying it in  https://status.lisinski.online):
 
 ```bash
-$ geth --networkid 385 --bootnodes "enode://ad9bb995f55c569e50e4dd6d9bc70a635b6d5297efa9708406ba35474e766c0e39bcbfd37ed656a290ee0258819bbec1ffbb6962331593a6beccdfd3f33788b6@188.166.162.200:30303,enode://92435c3c0ecc81acecb59a1a108f6a9266e4569331b7cddc511ab060a9a0a3dc4993a2f175643166f88b0dcbc09b138fd8bffc26eaac1681f71b107fa8c1f52f@142.93.230.46:30303" --unlock "<your-sealing-address>" --password p --mine --ethstats "<your-node-name>:IgnatiusFuchs1819@status.lisinski.online" --port 23453
+$ geth --networkid 385 --bootnodes "enode://429862a4e77fc45336173af866eeca74cc2ff686c009cb3ee2cc176b7764759ec9ab906af5a979283886af019527b8eb70f2ff094dab8155ae5cf104460acb6d@159.89.8.217:23453,enode://14dc7a805498052fd7f6781ee7e4e43ce67398a694048225406b5180ac65d266a972ea142c720aeb4191e077cb1474d40af855495a11a494cadeeef276cd2a4c@142.93.230.46:30303" --unlock "<your-sealing-address>" --password p --mine --ethstats "<your-node-name>:Ignatius1819@status.lisinski.online" --port 23453
 ```
 
 You can choose a random valid port number or omit the `--port` argument for the default `30303` port. If you wish to provide the password manually so you can ommit the `--password p` argument. But beware, if anything goes wrong and your node restarts it will not be able to seal blocks until you manually unlock it. So it is better to provide a password file and modify its permission so only your user can access it with:
@@ -95,7 +95,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/geth --datadir /home/<username>/.ethereum --networkid 385 --bootnodes "enode://ad9bb995f55c569e50e4dd6d9bc70a635b6d5297efa9708406ba35474e766c0e39bcbfd37ed656a290ee0258819bbec1ffbb6962331593a6beccdfd3f33788b6@188.166.162.200:30303,enode://92435c3c0ecc81acecb59a1a108f6a9266e4569331b7cddc511ab060a9a0a3dc4993a2f175643166f88b0dcbc09b138fd8bffc26eaac1681f71b107fa8c1f52f@142.93.230.46:30303" --unlock "<your-sealing-address>" --password /home/<username>/p --mine --ethstats "<your-node-name>:IgnatiusFuchs1819@status.lisinski.online" --port 23453
+ExecStart=/usr/bin/geth --datadir /home/<username>/.ethereum --networkid 385 --bootnodes "enode://429862a4e77fc45336173af866eeca74cc2ff686c009cb3ee2cc176b7764759ec9ab906af5a979283886af019527b8eb70f2ff094dab8155ae5cf104460acb6d@159.89.8.217:23453,enode://14dc7a805498052fd7f6781ee7e4e43ce67398a694048225406b5180ac65d266a972ea142c720aeb4191e077cb1474d40af855495a11a494cadeeef276cd2a4c@142.93.230.46:30303" --unlock "<your-sealing-address>" --password /home/<username>/p --mine --ethstats "<your-node-name>:Ignatius1819@status.lisinski.online" --port 23453
 User=<username>
 Group=<username>
 Restart=always
