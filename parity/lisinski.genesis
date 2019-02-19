@@ -1,5 +1,5 @@
 {
-  "name": "Lisinski Testnet",
+  "name": "Lisinski",
   "dataDir":"lisinski",
   "engine":{
     "clique":{
