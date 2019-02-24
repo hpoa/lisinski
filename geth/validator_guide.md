@@ -69,10 +69,10 @@ Store your account unlocking password into a new file (we name it `p` in this gu
 Finally, to start the `geth` use following commmand in which you replace the `<your-sealing-address>` with the public address of the private key from `pk.txt`- again from the first step, and you can also replace `<your-node-name>` with arbitrary node name (for identifying it in  https://status.lisinski.online):
 
 ```bash
-$ geth --networkid 385 --bootnodes "enode://403dde31d89016f37a7554f3cb391c92805410c774df9119da02a6be762c58a74216cf6e3b91c027e75cee64447ae26d7d085f5a616aa209da8e0c321ea626d9@188.166.43.22:23453,enode://05fbb6b5f8f90daf12d88bc0c51b38caae6dec3b3c40a1321b6d79ec3eccff749fe86e48d340ecdcb2300ad96280894f1d6793193f8b60c26c3975947f04970a@31.147.205.39:23453" --unlock "<your-sealing-address>" --password p --mine --ethstats "<your-node-name>:Ignatius1819@status.lisinski.online" --port 23453
+$ geth --networkid 385 --bootnodes "enode://403dde31d89016f37a7554f3cb391c92805410c774df9119da02a6be762c58a74216cf6e3b91c027e75cee64447ae26d7d085f5a616aa209da8e0c321ea626d9@188.166.43.22:23453,enode://05fbb6b5f8f90daf12d88bc0c51b38caae6dec3b3c40a1321b6d79ec3eccff749fe86e48d340ecdcb2300ad96280894f1d6793193f8b60c26c3975947f04970a@31.147.205.39:23453" --unlock "<your-sealing-address>" --password p --mine --ethstats "<your-node-name>:Ignatius1819@status.lisinski.online" --port 23453 --shh --lightserv 50
 ```
 
-You can choose a random valid port number or omit the `--port` argument for the default `30303` port. If you wish to provide the password manually so you can ommit the `--password p` argument. But beware, if anything goes wrong and your node restarts it will not be able to seal blocks until you manually unlock it. So it is better to provide a password file and modify its permission so only your user can access it with:
+You can choose a random valid port number or omit the `--port` argument for the default `30303` port. Notice that we are running the nodes with h the Whisper protocol (`--shh`) and with sharing 50% of the CPU time for serving light clients (`--lightserv 50`). If you wish to provide the password for unlocking the account manually so you can ommit the `--password p` argument. But beware, if anything goes wrong and your node restarts it will not be able to seal blocks until you manually unlock it. So it is better to provide a password file and modify its permission so only your user can access it with:
 
 ```bash
 $ chmod 600 p
@@ -95,7 +95,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/geth --datadir /home/<username>/.ethereum --networkid 385 --bootnodes "enode://403dde31d89016f37a7554f3cb391c92805410c774df9119da02a6be762c58a74216cf6e3b91c027e75cee64447ae26d7d085f5a616aa209da8e0c321ea626d9@188.166.43.22:23453,enode://05fbb6b5f8f90daf12d88bc0c51b38caae6dec3b3c40a1321b6d79ec3eccff749fe86e48d340ecdcb2300ad96280894f1d6793193f8b60c26c3975947f04970a@31.147.205.39:23453" --unlock "<your-sealing-address>" --password /home/<username>/p --mine --ethstats "<your-node-name>:Ignatius1819@status.lisinski.online" --port 23453
+ExecStart=/usr/bin/geth --datadir /home/<username>/.ethereum --networkid 385 --bootnodes "enode://403dde31d89016f37a7554f3cb391c92805410c774df9119da02a6be762c58a74216cf6e3b91c027e75cee64447ae26d7d085f5a616aa209da8e0c321ea626d9@188.166.43.22:23453,enode://05fbb6b5f8f90daf12d88bc0c51b38caae6dec3b3c40a1321b6d79ec3eccff749fe86e48d340ecdcb2300ad96280894f1d6793193f8b60c26c3975947f04970a@31.147.205.39:23453" --unlock "<your-sealing-address>" --password /home/<username>/p --mine --ethstats "<your-node-name>:Ignatius1819@status.lisinski.online" --port 23453 --shh --lightserv 50
 User=<username>
 Group=<username>
 Restart=always
